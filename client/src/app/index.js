@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Route, Routes, Navigate } from 'react-router-dom'
+
+import { Frame } from '../components/index'
+
+import { menuRoutes } from '../routes/index'
+
+import 'antd/dist/antd.css'
+import '../style/App.css'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Frame>
+      <Routes>
+        {menuRoutes.map(menuRoute => {
+          return (menuRoute.subMenu.map(route => {
+            return <Route key={route.path} element={route.element} path={route.path} />
+          }))
+        })}
+        <Route path="*" element={<Navigate to="/404" />} />
+      </Routes>
+    </Frame>
+  )
 }
 
-export default App;
+export default App
