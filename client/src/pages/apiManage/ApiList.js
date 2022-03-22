@@ -77,7 +77,7 @@ function ApiList() {
   ]
 
   return (
-    <Card title="API列表" extra={<Button type="primary" onClick={() => { navigate('/menu/apisList/edit') }}>新建</Button>} style={{ width: '100%' }}>
+    <Card title="API列表" extra={<Button type="primary" onClick={() => { navigate('/admin/apisList/creat') }}>新建</Button>} style={{ width: '100%' }}>
       <Table columns={columns} dataSource={apis} rowKey={record => record._id} />
     </Card>
   )
