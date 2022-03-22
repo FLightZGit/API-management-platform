@@ -60,6 +60,7 @@ function ApiList() {
       render: () => {
         return (
           <>
+            <Button type="primary" style={{ margin: '0 0.2rem' }} onClick={() => { navigate('/menu/apisList/edit/:id') }}>编辑</Button>
             <Popconfirm
               title="确定删除?"
               onConfirm={confirm}
@@ -67,7 +68,6 @@ function ApiList() {
               okText="确定"
               cancelText="取消"
             >
-              <Button type="primary" style={{ margin: '0 0.5rem' }}>编辑</Button>
               <Button danger>删除</Button>
             </Popconfirm>
           </>
@@ -77,7 +77,7 @@ function ApiList() {
   ]
 
   return (
-    <Card title="API列表" extra={<Button type="primary" onClick={() => { navigate('/admin/apisList/creat') }}>新建</Button>} style={{ width: '100%' }}>
+    <Card title="API列表" extra={<Button type="primary" onClick={() => { navigate('/menu/apisList/creat') }}>新建</Button>} style={{ width: '100%' }}>
       <Table columns={columns} dataSource={apis} rowKey={record => record._id} />
     </Card>
   )

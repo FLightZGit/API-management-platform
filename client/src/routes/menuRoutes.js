@@ -1,15 +1,13 @@
-import { ApiList, Person } from "../pages/index";
 import { AlignLeftOutlined, ControlOutlined } from '@ant-design/icons';
 
 const menuRoutes = [
     {
         key: 'menu1',
-        title: 'API管理',
+        title: '项目管理',
         icon: <AlignLeftOutlined />,
         subMenu: [{
-            name: 'API列表',
-            path: '/menu/apisList',
-            element: <ApiList />,
+            name: '项目列表',
+            path: '/',
         },
         ]
     }, {
@@ -19,7 +17,6 @@ const menuRoutes = [
         subMenu: [{
             name: '管理员',
             path: '/menu/sysConfig/person',
-            element: <Person />
         },
         ]
     }
