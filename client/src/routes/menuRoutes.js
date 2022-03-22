@@ -1,8 +1,5 @@
-import { List, Edit, Person } from "../pages/index";
-import {
-    AlignLeftOutlined,
-    ControlOutlined
-} from '@ant-design/icons';
+import { ApiList, Person } from "../pages/index";
+import { AlignLeftOutlined, ControlOutlined } from '@ant-design/icons';
 
 const menuRoutes = [
     {
@@ -12,23 +9,18 @@ const menuRoutes = [
         subMenu: [{
             name: 'API列表',
             path: '/menu/apisList',
-            element: <List />,
-        }, {
-            name: 'API编辑',
-            path: '/menu/apisList/edit/:id',
-            element: <Edit />
-        }]
-
+            element: <ApiList />,
+        },
+        ]
     }, {
         key: 'menu2',
         title: '系统设置',
         icon: <ControlOutlined />,
-        subMenu: [
-            {
-                name: '管理员',
-                path: '/menu/sysConfig/person',
-                element: <Person />
-            }
+        subMenu: [{
+            name: '管理员',
+            path: '/menu/sysConfig/person',
+            element: <Person />
+        },
         ]
     }
 ]

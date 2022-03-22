@@ -1,8 +1,8 @@
 import Login from "./Login";
 import PageNotFound from "./PageNotFound";
 
-import Edit from "./apiManage/Edit";
-import List from "./apiManage/List";
+import ApiEdit from "./apiManage/ApiEdit";
+import ApiList from "./apiManage/ApiList";
 import Person from "./sysConfig/Person";
 
-export { Login, PageNotFound, Edit, List, Person }
+export { Login, PageNotFound, ApiEdit, ApiList, Person }

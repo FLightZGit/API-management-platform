@@ -7,6 +7,7 @@ const mainRoutes = [{
 }, {
     path: '/404',
     element: <PageNotFound />
-}]
+},
+]
 
 export default mainRoutes
