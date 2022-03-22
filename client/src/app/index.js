@@ -5,7 +5,7 @@ import { Frame } from '../components/index'
 
 import { menuRoutes } from '../routes/index'
 
-import 'antd/dist/antd.css'
+import 'antd/dist/antd.min.css'
 import '../style/App.css'
 
 function App() {
