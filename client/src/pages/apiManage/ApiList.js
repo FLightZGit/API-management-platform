@@ -1,8 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import api_requests from '../../service/apiService';
-import { Card, Table, Button } from 'antd';
+import { useNavigate } from 'react-router-dom'
 
-function List() {
+import { Card, Table, Button, Popconfirm, message } from 'antd';
+
+function confirm(e) {
+  console.log(e);
+  message.success('已删除');
+}
+
+function cancel(e) {
+  console.log(e);
+}
+
+function ApiList() {
+  const navigate = useNavigate()
   const [apis, setApis] = useState([]);
 
   useEffect(() => {
@@ -48,18 +60,27 @@ function List() {
       render: () => {
         return (
           <>
-            <Button type="primary" style={{ margin: '0 0.5rem' }}>编辑</Button>
-            <Button danger>删除</Button>
-          </>)
+            <Popconfirm
+              title="确定删除?"
+              onConfirm={confirm}
+              onCancel={cancel}
+              okText="确定"
+              cancelText="取消"
+            >
+              <Button type="primary" style={{ margin: '0 0.5rem' }}>编辑</Button>
+              <Button danger>删除</Button>
+            </Popconfirm>
+          </>
+        )
       },
     },
   ]
 
   return (
-    <Card title="API列表" extra={<a href="#">新建</a>} style={{ width: '100%' }}>
+    <Card title="API列表" extra={<Button type="primary" onClick={() => { navigate('/menu/apisList/edit') }}>新建</Button>} style={{ width: '100%' }}>
       <Table columns={columns} dataSource={apis} rowKey={record => record._id} />
     </Card>
   )
 }
 
-export default List
+export default ApiList

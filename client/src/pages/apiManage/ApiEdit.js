@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Edit() {
+function ApiEdit() {
   return (
     <div>编辑</div>
   )
 }
 
-export default Edit
+export default ApiEdit
