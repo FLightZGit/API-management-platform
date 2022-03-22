@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card, Avatar } from 'antd';
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
+import { SettingOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom'
 
 function Person() {
