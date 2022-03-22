@@ -5,7 +5,7 @@ import { Login, PageNotFound } from "../pages/index"
 import { Frame } from '../components/index'
 import { ProjectList, ProjectCreat, ProjectEdit, ApiList, ApiEdit, ApiCreat, Person, PersonEdit } from '../pages/index'
 
-import 'antd/dist/antd.css'
+import 'antd/dist/antd.min.css'
 import '../style/App.css'
 
 function App() {
