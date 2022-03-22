@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Layout, Menu } from 'antd';
 
 
 import { menuRoutes } from '../../routes/index'
@@ -30,7 +30,7 @@ function Frame(props) {
                   <SubMenu key={route.key} icon={route.icon} title={route.title}>
                     {
                       route.subMenu.map(menuChild => {
-                        return <Menu.Item key={menuChild.path} onClick={()=>{navigate(menuChild.path)}}>{menuChild.name}</Menu.Item>
+                        return <Menu.Item key={menuChild.path} onClick={() => { navigate(menuChild.path) }}>{menuChild.name}</Menu.Item>
                       })
                     }
                   </SubMenu>)
@@ -39,11 +39,6 @@ function Frame(props) {
           </Menu>
         </Sider>
         <Layout style={{ padding: '0 24px 24px' }}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
-            <Breadcrumb.Item>List</Breadcrumb.Item>
-            <Breadcrumb.Item>App</Breadcrumb.Item>
-          </Breadcrumb>
           <Content
             className="site-layout-background"
             style={{

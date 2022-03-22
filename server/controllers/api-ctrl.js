@@ -13,9 +13,9 @@ const updateApi = async (ctx, next) => {
 
     api.apiName = body.apiName
     api.apiAdress = body.apiAdress
-    api.apiRequestMethods = body.apiRequestMethods
+    api.apiRequestMethod = body.apiRequestMethod
     api.apiParameters = body.apiParameters
-    api.apiResponses = body.apiResponses
+    api.apiResponse = body.apiResponse
     api.apiGroup = body.apiGroup
     api.apiCreatPerson = body.apiCreatPerson
     api.apiNote = body.apiNote
