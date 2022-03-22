@@ -1,14 +1,14 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import { Layout, Menu } from 'antd';
+import { Outlet, useNavigate } from 'react-router-dom'
 
+import { Layout, Menu } from 'antd';
 
 import { menuRoutes } from '../../routes/index'
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
-function Frame(props) {
+function Frame() {
   const navigate = useNavigate()
   return (
     < Layout >
@@ -47,7 +47,7 @@ function Frame(props) {
               minHeight: 280,
             }}
           >
-            {props.children}
+            <Outlet />
           </Content>
         </Layout>
       </Layout>

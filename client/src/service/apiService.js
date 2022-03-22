@@ -9,7 +9,7 @@ function getApiById(id) {
 }
 
 function createApi(params) {
-    return axios_post(`/apis`, params)
+    return axios_post(`/api`, params)
 }
 
 function updateApi(id, params) {

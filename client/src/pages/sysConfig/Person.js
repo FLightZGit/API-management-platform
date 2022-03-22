@@ -1,8 +1,10 @@
 import React from 'react'
 import { Card, Avatar } from 'antd';
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom'
 
 function Person() {
+  const navigate = useNavigate()
   const { Meta } = Card;
   return (
     <Card
@@ -14,9 +16,7 @@ function Person() {
         />
       }
       actions={[
-        <SettingOutlined key="setting" />,
-        <EditOutlined key="edit" />,
-        <EllipsisOutlined key="ellipsis" />,
+        <SettingOutlined key="setting" onClick={() => { navigate('/menu/sysConfig/person/edit') }}/>,
       ]}
     >
       <Meta

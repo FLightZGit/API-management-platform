@@ -9,6 +9,7 @@ const cors = require('koa-cors')
 
 const db = require('./db')
 const apiRouter = require('./routes/api-router')
+const projectRouter = require('./routes/project-router')
 
 // error handler
 onerror(app)
@@ -36,6 +37,7 @@ app.use(async (ctx, next) => {
 
 // routes
 app.use(apiRouter.routes(), apiRouter.allowedMethods())
+app.use(projectRouter.routes(), projectRouter.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {
