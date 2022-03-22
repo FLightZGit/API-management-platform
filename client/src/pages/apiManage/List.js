@@ -46,17 +46,18 @@ function List() {
       title: '操作',
       key: 'action',
       render: () => {
-        <>
-          <Button type="primary" style={{ margin: '0 0.5rem' }}>编辑</Button>
-          <Button danger>删除</Button>
-        </>
+        return (
+          <>
+            <Button type="primary" style={{ margin: '0 0.5rem' }}>编辑</Button>
+            <Button danger>删除</Button>
+          </>)
       },
     },
   ]
 
   return (
     <Card title="API列表" extra={<a href="#">新建</a>} style={{ width: '100%' }}>
-      <Table columns={columns} dataSource={apis} rowKey={record=>record._id} />
+      <Table columns={columns} dataSource={apis} rowKey={record => record._id} />
     </Card>
   )
 }

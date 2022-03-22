@@ -11,11 +11,11 @@ const menuRoutes = [
         icon: <AlignLeftOutlined />,
         subMenu: [{
             name: 'API列表',
-            path: '/admin/apisList',
+            path: '/menu/apisList',
             element: <List />,
         }, {
             name: 'API编辑',
-            path: '/admin/apisList/edit/:id',
+            path: '/menu/apisList/edit/:id',
             element: <Edit />
         }]
 
@@ -26,7 +26,7 @@ const menuRoutes = [
         subMenu: [
             {
                 name: '管理员',
-                path: '/admin/sysConfig/person',
+                path: '/menu/sysConfig/person',
                 element: <Person />
             }
         ]
