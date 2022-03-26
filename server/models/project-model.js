@@ -6,6 +6,7 @@ const ProjectSchema = new Schema(
         projectName: { type: String, required: true },
         projectOwner: { type: String, required: true },
         projectNote: { type: String, required: true },
+        projectApis: { type: [String], required: true },
     },
     { timestamps: true },
 )

@@ -1,9 +1,8 @@
 import React from 'react'
-import { Outlet, useNavigate } from 'react-router-dom'
+import { Link, Outlet, useNavigate } from 'react-router-dom'
 
 import { Layout, Menu } from 'antd';
-
-import { menuRoutes } from '../../routes/index'
+import { AlignLeftOutlined, ControlOutlined } from '@ant-design/icons';
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -24,18 +23,16 @@ function Frame() {
             defaultOpenKeys={['sub1']}
             style={{ height: '100%', borderRight: 0 }}
           >
-            {
-              menuRoutes.map(route => {
-                return (
-                  <SubMenu key={route.key} icon={route.icon} title={route.title}>
-                    {
-                      route.subMenu.map(menuChild => {
-                        return <Menu.Item key={menuChild.path} onClick={() => { navigate(menuChild.path) }}>{menuChild.name}</Menu.Item>
-                      })
-                    }
-                  </SubMenu>)
-              })
-            }
+            <SubMenu key="sub1" icon={<AlignLeftOutlined />} title='项目管理'>
+              <Menu.Item key="1">
+                <Link to='/'>项目列表</Link>
+              </Menu.Item>
+            </SubMenu>
+            <SubMenu key="sub2" icon={<ControlOutlined />} title='系统设置'>
+              <Menu.Item key="2">
+                <Link to='/menu/sysConfig/person'>管理员</Link>
+              </Menu.Item>
+            </SubMenu>
           </Menu>
         </Sider>
         <Layout style={{ padding: '0 24px 24px' }}>

@@ -1,7 +1,7 @@
 import { axios_get, axios_post, axios_put, axios_delete } from "../util/request"
 
-function getApis() {
-    return axios_get(`/apis`, '')
+function getApis(projectId) {
+    return axios_get(`/${projectId}/apis`, '')
 }
 
 function getApiById(id) {

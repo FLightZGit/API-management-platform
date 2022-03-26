@@ -50,8 +50,8 @@ function ProjectList() {
       render: () => {
         return (
           <>
-            <Button type="primary" style={{ margin: '0 0.2rem' }} onClick={() => { navigate('/menu/apisList') }}>查看</Button>
-            <Button style={{ margin: '0 0.5rem' }} onClick={() => { navigate('/menu/projectList/edit/:id') }}>编辑</Button>
+            <Button type="primary" style={{ margin: '0 0.2rem' }} onClick={() => { navigate('/menu/projectDetail/:projectId/apisList') }}>查看</Button>
+            <Button style={{ margin: '0 0.5rem' }} onClick={() => { navigate('/menu/projectDetail/:projectId/edit') }}>编辑</Button>
             <Popconfirm
               title="确定删除?"
               onConfirm={confirm}
@@ -67,7 +67,7 @@ function ProjectList() {
     },
   ]
   return (
-    <Card title="项目列表" extra={<Button type="primary" onClick={() => { navigate('/menu/projectList/creat') }}>新建</Button>} style={{ width: '100%' }}>
+    <Card title="项目列表" extra={<Button type="primary" onClick={() => { navigate('/menu/projectsList/creat') }}>新建</Button>} style={{ width: '100%' }}>
       <Table columns={columns} dataSource={projects} rowKey={record => record._id} />
     </Card>
   )

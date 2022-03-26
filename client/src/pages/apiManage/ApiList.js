@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import api_requests from '../../service/apiService';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { Card, Table, Button, Popconfirm, message } from 'antd';
 
@@ -15,10 +15,12 @@ function cancel(e) {
 
 function ApiList() {
   const navigate = useNavigate()
+  const params = useParams()
+  
   const [apis, setApis] = useState([]);
 
   useEffect(() => {
-    api_requests.getApis().then(res => { setApis(res) })
+    api_requests.getApis(params.projectId).then(res => { setApis(res) })
   }, []);
 
   console.log('TCL: apiList -> apis', apis)
@@ -60,7 +62,7 @@ function ApiList() {
       render: () => {
         return (
           <>
-            <Button type="primary" style={{ margin: '0 0.2rem' }} onClick={() => { navigate('/menu/apisList/edit/:id') }}>编辑</Button>
+            <Button type="primary" style={{ margin: '0 0.2rem' }} onClick={() => { navigate('/menu/projectDetail/:projectId/apiDetail/:apiId/edit') }}>编辑</Button>
             <Popconfirm
               title="确定删除?"
               onConfirm={confirm}
@@ -77,7 +79,7 @@ function ApiList() {
   ]
 
   return (
-    <Card title="API列表" extra={<Button type="primary" onClick={() => { navigate('/menu/apisList/creat') }}>新建</Button>} style={{ width: '100%' }}>
+    <Card title="API列表" extra={<Button type="primary" onClick={() => { navigate('/menu/projectDetail/:projectId/apisList/creat') }}>新建</Button>} style={{ width: '100%' }}>
       <Table columns={columns} dataSource={apis} rowKey={record => record._id} />
     </Card>
   )
