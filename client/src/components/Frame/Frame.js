@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link, Outlet, useNavigate } from 'react-router-dom'
 
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Button } from 'antd';
 import { AlignLeftOutlined, ControlOutlined } from '@ant-design/icons';
+import '../../style/Frame.css'
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -12,8 +13,8 @@ function Frame() {
   return (
     < Layout >
       <Header className="header">
-        <div className="logo" />
         <h1 style={{ color: 'white' }}>API管理平台</h1>
+        <Button type="primary" onClick={() => { navigate('/login') }} style={{ color: 'white' }}>退出</Button>
       </Header>
       <Layout>
         <Sider width={200} className="site-layout-background">
