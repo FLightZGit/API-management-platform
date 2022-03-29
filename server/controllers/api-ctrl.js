@@ -1,15 +1,41 @@
-const Api = require('../models/api-model')
+const Project = require('../models/project-model')
 
-const createApi = async (ctx, next) => {
-    const newApi = new Api(ctx.request.body)
-    const savedApi = await newApi.save()
-    ctx.body = savedApi
+const getApis = async (ctx) => {
+    const projectId = ctx.params.projectId
+    const project = await Project.findById(projectId)
+
+    const apis = await project.projectApis
+
+    ctx.body = apis
 }
 
-const updateApi = async (ctx, next) => {
+const getApiById = async (ctx) => {
+    const projectId = ctx.params.projectId
+    const project = await Project.findById(projectId)
+
+    const apiId = ctx.params.apiId
+    const api = await project.projectApis.id(apiId)
+
+    ctx.body = api
+}
+
+const createApi = async (ctx) => {
+    const projectId = ctx.params.projectId
+    const project = await Project.findById(projectId)
+
+    await project.projectApis.push(ctx.request.body)
+    await project.save()
+
+    ctx.body = project
+}
+
+const updateApi = async (ctx) => {
     const body = ctx.request.body
-    const id = ctx.params.id
-    const api = await Api.findById(id)
+    const projectId = ctx.params.projectId
+    const project = await Project.findById(projectId)
+
+    const apiId = ctx.params.apiId
+    const api = await project.projectApis.id(apiId)
 
     api.apiName = body.apiName
     api.apiAdress = body.apiAdress
@@ -24,31 +50,24 @@ const updateApi = async (ctx, next) => {
     ctx.body = updatedApi
 }
 
-const deleteApi = async (ctx, next) => {
-    const id = ctx.params.id
-    const api = await Api.findById(id)
+const deleteApi = async (ctx) => {
+    const projectId = ctx.params.projectId
+    const project = await Project.findById(projectId)
 
-    const deletedApi = await api.remove()
-    ctx.body = deletedApi
-}
+    const apiId = ctx.params.apiId
+    const api = await project.projectApis.id(apiId)
 
-const getApiById = async (ctx, next) => {
-    const id = ctx.params.id
-    const api = await Api.findById(id)
+    await api.remove()
+    await project.save()
 
     ctx.body = api
 }
 
-const getApis = async (ctx, next) => {
-    const apis = await Api.find({})
-    ctx.body = apis
-}
-
 
 module.exports = {
+    getApis,
+    getApiById,
     createApi,
     updateApi,
     deleteApi,
-    getApis,
-    getApiById,
 }

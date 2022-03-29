@@ -4,20 +4,20 @@ function getProjects() {
     return axios_get(`/projects`, '')
 }
 
-function getProjectById(id) {
-    return axios_get(`/project/${id}`, '')
+function getProjectById(projectId) {
+    return axios_get(`/project/${projectId}`, '')
 }
 
 function createProject(params) {
     return axios_post(`/project`, params)
 }
 
-function updateProject(id, params) {
-    return axios_put(`/project/${id}`, params)
+function updateProject(projectId, params) {
+    return axios_put(`/project/${projectId}`, params)
 }
 
-function deleteProject(id) {
-    return axios_delete(`/project/${id}`, '')
+function deleteProject(projectId) {
+    return axios_delete(`/project/${projectId}`, '')
 }
 
 const project_requests = {
