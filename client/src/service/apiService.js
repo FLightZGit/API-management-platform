@@ -1,23 +1,23 @@
 import { axios_get, axios_post, axios_put, axios_delete } from "../util/request"
 
 function getApis(projectId) {
-    return axios_get(`/${projectId}/apis`, '')
+    return axios_get(`/project/${projectId}/apis`, '')
 }
 
-function getApiById(id) {
-    return axios_get(`/api/${id}`, '')
+function getApiById(projectId, apiId) {
+    return axios_get(`/project/${projectId}/api/${apiId}`, '')
 }
 
-function createApi(params) {
-    return axios_post(`/api`, params)
+function createApi(projectId, params) {
+    return axios_post(`/project/${projectId}/api`, params)
 }
 
-function updateApi(id, params) {
-    return axios_put(`/api/${id}`, params)
+function updateApi(projectId, apiId, params) {
+    return axios_put(`/project/${projectId}/api/${apiId}`, params)
 }
 
-function deleteApi(id) {
-    return axios_delete(`/api/${id}`, '')
+function deleteApi(projectId, apiId) {
+    return axios_delete(`/project/${projectId}/api/${apiId}`, '')
 }
 
 const api_requests = {
