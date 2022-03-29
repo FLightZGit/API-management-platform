@@ -2,9 +2,10 @@ import { Spin } from 'antd'
 import { lazy, Suspense } from 'react'
 import { Navigate } from 'react-router-dom'
 
-import { Frame } from '../components/index'
+import Frame from '../components/Frame'
 
 const Login = lazy(() => import('../pages/Login'))
+const Register = lazy(() => import('../pages/Register'))
 const PageNotFound = lazy(() => import('../pages/PageNotFound'))
 const ProjectList = lazy(() => import('../pages/projectManage/ProjectList'))
 const ProjectCreat = lazy(() => import('../pages/projectManage/ProjectCreat'))
@@ -30,16 +31,17 @@ const router = [
                 index: true,
                 element: lazyload(<ProjectList />)
             },
-            { path: '/menu/projectsList/creat', element: lazyload(<ProjectCreat />) },
-            { path: '/menu/projectDetail/:projectId/edit', element: lazyload(<ProjectEdit />) },
-            { path: '/menu/projectDetail/:projectId/apisList', element: lazyload(<ApiList />) },
-            { path: '/menu/projectDetail/:projectId/apisList/creat', element: lazyload(<ApiCreat />) },
-            { path: '/menu/projectDetail/:projectId/apiDetail/:apiId/edit', element: lazyload(<ApiEdit />) },
+            { path: '/menu/project', element: lazyload(<ProjectCreat />) },
+            { path: '/menu/project/:projectId', element: lazyload(<ProjectEdit />) },
+            { path: '/menu/project/:projectId/apisList', element: lazyload(<ApiList />) },
+            { path: '/menu/project/:projectId/api', element: lazyload(<ApiCreat />) },
+            { path: '/menu/project/:projectId/api/:apiId', element: lazyload(<ApiEdit />) },
             { path: '/menu/sysConfig/person', element: lazyload(<Person />) },
-            { path: '/menu/sysConfig/person/edit', element: lazyload(<PersonEdit />) },
+            { path: '/menu/sysConfig/person/:personId', element: lazyload(<PersonEdit />) },
         ]
     },
     { path: '/login', element: lazyload(<Login />) },
+    { path: '/register', element: lazyload(<Register />) },
     { path: '/404', element: lazyload(<PageNotFound />) },
     { path: '*', element: <Navigate to="/404" /> },
 ]
