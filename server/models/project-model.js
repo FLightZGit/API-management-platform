@@ -18,7 +18,7 @@ const ApiSchema = new Schema(
 const ProjectSchema = new Schema(
     {
         projectName: { type: String, required: true },
-        projectOwner: { type: String, required: true },
+        projectCreator: { type: String, required: true },
         projectNote: { type: String, required: true },
         projectApis: [ApiSchema]
     },

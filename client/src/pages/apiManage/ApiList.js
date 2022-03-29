@@ -15,15 +15,13 @@ function cancel(e) {
 
 function ApiList() {
   const navigate = useNavigate()
-  const { projectID } = useParams()
-
-  console.log(projectID)
+  const { projectId } = useParams()
 
   const [apis, setApis] = useState([]);
 
   useEffect(() => {
-    api_requests.getApis(projectID).then(res => { setApis(res) })
-  }, [projectID]);
+    api_requests.getApis(projectId).then(res => { setApis(res) })
+  }, [projectId]);
 
   console.log('TCL: apiList -> apis', apis)
 

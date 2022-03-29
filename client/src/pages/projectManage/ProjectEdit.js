@@ -1,17 +1,18 @@
 import React from 'react'
 import { Button, Card, Form, Input } from 'antd'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom'
 
-import project_requests from '../../service/projectService';
+import project_requests from '../../service/projectService'
 
 function ProjectEdit() {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+  const { projectId } = useParams()
 
   const onFinish = (values) => {
-    console.log('Received values of form: ', values);
-    project_requests.updateProject()
+    console.log('Received values of form: ', values)
+    project_requests.updateProject(projectId, values)
     navigate('/')
-  };
+  }
 
   return (
     <Card title='编辑项目'>
@@ -23,30 +24,37 @@ function ProjectEdit() {
       >
         <Form.Item
           label='项目名称'
-          name={'projectName'}
+          name='projectName'
           rules={[
-          {
-            required: true,
-            message: '请输入项目名称!',
-          },
-        ]}
-        ><Input />
+            {
+              required: true,
+              message: '请输入项目名称!',
+            },
+          ]}
+        >
+          <Input />
         </Form.Item>
         <Form.Item
           label='项目创建者'
-          name={'projectCreator'}
+          name='projectCreator'
           rules={[
-          {
-            required: true,
-            message: '请输入项目创建者!',
-          },
+            {
+              required: true,
+              message: '请输入项目创建者!',
+            },
           ]}
         ><Input />
         </Form.Item>
         <Form.Item
           label='项目备注'
-        >
-          <Input />
+          name='projectNote'
+          rules={[
+            {
+              required: true,
+              message: '请输入项目备注!',
+            },
+          ]}
+        ><Input />
         </Form.Item>
         <Form.Item ><Button type='primary' htmlType='submit'>保存</Button></Form.Item>
       </Form>
