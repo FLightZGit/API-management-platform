@@ -15,13 +15,15 @@ function cancel(e) {
 
 function ApiList() {
   const navigate = useNavigate()
-  const params = useParams()
-  
+  const { projectID } = useParams()
+
+  console.log(projectID)
+
   const [apis, setApis] = useState([]);
 
   useEffect(() => {
-    api_requests.getApis(params.projectId).then(res => { setApis(res) })
-  }, []);
+    api_requests.getApis(projectID).then(res => { setApis(res) })
+  }, [projectID]);
 
   console.log('TCL: apiList -> apis', apis)
 
@@ -62,7 +64,7 @@ function ApiList() {
       render: () => {
         return (
           <>
-            <Button type="primary" style={{ margin: '0 0.2rem' }} onClick={() => { navigate('/menu/projectDetail/:projectId/apiDetail/:apiId/edit') }}>编辑</Button>
+            <Button type="primary" style={{ margin: '0 0.2rem' }} onClick={() => { navigate('/menu/project/:projectId/api/:apiId') }}>编辑</Button>
             <Popconfirm
               title="确定删除?"
               onConfirm={confirm}
@@ -79,7 +81,7 @@ function ApiList() {
   ]
 
   return (
-    <Card title="API列表" extra={<Button type="primary" onClick={() => { navigate('/menu/projectDetail/:projectId/apisList/creat') }}>新建</Button>} style={{ width: '100%' }}>
+    <Card title="API列表" extra={<Button type="primary" onClick={() => { navigate('/menu/project/:projectId/api') }}>新建</Button>} style={{ width: '100%' }}>
       <Table columns={columns} dataSource={apis} rowKey={record => record._id} />
     </Card>
   )

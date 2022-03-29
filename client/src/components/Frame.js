@@ -3,7 +3,7 @@ import { Link, Outlet, useNavigate } from 'react-router-dom'
 
 import { Layout, Menu, Button } from 'antd';
 import { AlignLeftOutlined, ControlOutlined } from '@ant-design/icons';
-import '../../style/Frame.css'
+import '../style/Frame.css'
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;

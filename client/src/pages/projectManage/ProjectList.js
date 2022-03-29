@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { project_requests } from '../../service/index';
+import project_requests from '../../service/projectService';
 import { useNavigate } from 'react-router-dom'
 
 import { Card, Table, Button, Popconfirm, message } from 'antd';
@@ -47,11 +47,11 @@ function ProjectList() {
     {
       title: '操作',
       key: 'action',
-      render: () => {
+      render: (record) => {
         return (
           <>
-            <Button type="primary" style={{ margin: '0 0.2rem' }} onClick={() => { navigate('/menu/projectDetail/:projectId/apisList') }}>查看</Button>
-            <Button style={{ margin: '0 0.5rem' }} onClick={() => { navigate('/menu/projectDetail/:projectId/edit') }}>编辑</Button>
+            <Button type="primary" style={{ margin: '0 0.2rem' }} onClick={() => { navigate(`/menu/project/${record._id}/apisList`) }}>查看</Button>
+            <Button style={{ margin: '0 0.5rem' }} onClick={() => { navigate(`/menu/project/${record._id}`) }}>编辑</Button>
             <Popconfirm
               title="确定删除?"
               onConfirm={confirm}
@@ -67,7 +67,7 @@ function ProjectList() {
     },
   ]
   return (
-    <Card title="项目列表" extra={<Button type="primary" onClick={() => { navigate('/menu/projectsList/creat') }}>新建</Button>} style={{ width: '100%' }}>
+    <Card title="项目列表" extra={<Button type="primary" onClick={() => { navigate('/menu/project') }}>新建</Button>} style={{ width: '100%' }}>
       <Table columns={columns} dataSource={projects} rowKey={record => record._id} />
     </Card>
   )
