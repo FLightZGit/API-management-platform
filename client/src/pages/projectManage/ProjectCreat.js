@@ -21,9 +21,40 @@ function ProjectCreat() {
         layout="vertical"
         onFinish={onFinish}
       >
-        <Form.Item label='项目名称' required><Input /></Form.Item>
-        <Form.Item label='项目创建者' required><Input /></Form.Item>
-        <Form.Item label='项目备注' required><Input /></Form.Item>
+        <Form.Item
+          label='项目名称'
+          name='projectName'
+          rules={[
+          {
+            required: true,
+            message: '请输入项目名称!',
+          },
+        ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label='项目创建者'
+          name='projectCreator'
+          rules={[
+          {
+            required: true,
+            message: '请输入项目创建者!',
+          },
+        ]}
+        ><Input />
+        </Form.Item>
+        <Form.Item
+          label='项目备注'
+          name='projectNote'
+          rules={[
+          {
+            required: true,
+            message: '请输入项目备注!',
+          },
+        ]}
+        ><Input />
+        </Form.Item>
         <Form.Item ><Button type='primary' htmlType='submit'>保存</Button></Form.Item>
       </Form>
     </Card>

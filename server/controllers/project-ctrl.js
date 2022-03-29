@@ -26,7 +26,7 @@ const updateProject = async (ctx) => {
     const project = await Project.findById(projectId)
 
     project.projectName = body.projectName
-    project.projectOwner = body.projectOwner
+    project.projectCreator = body.projectCreator
     project.projectNote = body.projectNote
 
     const updatedProject = await project.save()
@@ -40,9 +40,8 @@ const deleteProject = async (ctx) => {
 
     const deletedProject = await project.remove()
 
-    ctx.body = deletedProject
+    ctx.body = await Project.find({})
 }
-
 
 module.exports = {
     getProjects,

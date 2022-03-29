@@ -1,17 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import project_requests from '../../service/projectService';
+import project_requests from '../../service/projectService'
 import { useNavigate } from 'react-router-dom'
 
-import { Card, Table, Button, Popconfirm, message } from 'antd';
-
-function confirm(e) {
-  console.log(e);
-  message.success('已删除');
-}
-
-function cancel(e) {
-  console.log(e);
-}
+import { Card, Table, Button, Popconfirm, message } from 'antd'
 
 function ProjectList() {
   const navigate = useNavigate()
@@ -19,7 +10,7 @@ function ProjectList() {
 
   useEffect(() => {
     project_requests.getProjects().then(res => { setProjects(res) })
-  }, []);
+  }, [])
 
   console.log('TCL: projectList -> projects', projects)
 
@@ -36,8 +27,8 @@ function ProjectList() {
     },
     {
       title: '项目创建者',
-      dataIndex: 'projectOwner',
-      key: 'projectOwner',
+      dataIndex: 'projectCreator',
+      key: 'projectCreator',
     },
     {
       title: '项目备注',
@@ -54,8 +45,14 @@ function ProjectList() {
             <Button style={{ margin: '0 0.5rem' }} onClick={() => { navigate(`/menu/project/${record._id}`) }}>编辑</Button>
             <Popconfirm
               title="确定删除?"
-              onConfirm={confirm}
-              onCancel={cancel}
+              onConfirm={() => {
+                console.log(record._id);
+                project_requests.deleteProject(record._id).then(res => { setProjects(res) })
+                message.success('已删除')
+              }}
+              onCancel={(e) => {
+                console.log(e)
+              }}
               okText="确定"
               cancelText="取消"
             >
