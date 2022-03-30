@@ -41,13 +41,13 @@ const updateApi = async (ctx) => {
     api.apiAdress = body.apiAdress
     api.apiRequestMethod = body.apiRequestMethod
     api.apiParameters = body.apiParameters
-    api.apiResponse = body.apiResponse
+    api.apiReturn = body.apiReturn
     api.apiGroup = body.apiGroup
-    api.apiCreatPerson = body.apiCreatPerson
+    api.apiCreator = body.apiCreator
     api.apiNote = body.apiNote
 
-    const updatedApi = await api.save()
-    ctx.body = updatedApi
+    const updatedProject = await project.save()
+    ctx.body = updatedProject
 }
 
 const deleteApi = async (ctx) => {
@@ -60,7 +60,7 @@ const deleteApi = async (ctx) => {
     await api.remove()
     await project.save()
 
-    ctx.body = api
+    ctx.body = await project.projectApis
 }
 
 

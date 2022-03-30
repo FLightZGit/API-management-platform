@@ -1,17 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import api_requests from '../../service/apiService';
+import { Card, Table, Button, Popconfirm, message } from 'antd';
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { Card, Table, Button, Popconfirm, message } from 'antd';
-
-function confirm(e) {
-  console.log(e);
-  message.success('已删除');
-}
-
-function cancel(e) {
-  console.log(e);
-}
+import api_requests from '../../service/apiService';
 
 function ApiList() {
   const navigate = useNavigate()
@@ -53,20 +44,31 @@ function ApiList() {
     },
     {
       title: 'api返回参数',
-      dataIndex: 'apiResponse',
-      key: 'apiResponse',
+      dataIndex: 'apiReturn',
+      key: 'apiReturn',
+    },
+    {
+      title: 'api备注',
+      dataIndex: 'apiNote',
+      key: 'apiNote',
     },
     {
       title: '操作',
       key: 'action',
-      render: () => {
+      render: (record) => {
         return (
           <>
-            <Button type="primary" style={{ margin: '0 0.2rem' }} onClick={() => { navigate('/menu/project/:projectId/api/:apiId') }}>编辑</Button>
+            <Button type="primary" style={{ margin: '0 0.2rem' }} onClick={() => { navigate(`/menu/project/${projectId}/api/${record._id}`) }}>编辑</Button>
             <Popconfirm
               title="确定删除?"
-              onConfirm={confirm}
-              onCancel={cancel}
+              onConfirm={() => {
+                console.log(record._id);
+                api_requests.deleteApi(projectId, record._id).then(res => { setApis(res) })
+                message.success('已删除')
+              }}
+              onCancel={(e) => {
+                console.log(e)
+              }}
               okText="确定"
               cancelText="取消"
             >
@@ -79,7 +81,7 @@ function ApiList() {
   ]
 
   return (
-    <Card title="API列表" extra={<Button type="primary" onClick={() => { navigate('/menu/project/:projectId/api') }}>新建</Button>} style={{ width: '100%' }}>
+    <Card title="API列表" extra={<Button type="primary" onClick={() => { navigate(`/menu/project/${projectId}/api`) }}>新建</Button>} style={{ width: '100%' }}>
       <Table columns={columns} dataSource={apis} rowKey={record => record._id} />
     </Card>
   )
