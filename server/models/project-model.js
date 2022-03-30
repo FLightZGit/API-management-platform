@@ -7,10 +7,10 @@ const ApiSchema = new Schema(
         apiAdress: { type: String, required: true },
         apiRequestMethod: { type: String, required: true },
         apiParameters: { type: [String], required: true },
-        apiResponse: { type: String, required: true },
+        apiReturn: { type: String, required: true },
         apiGroup: { type: Number, required: true },
-        apiCreatPerson: { type: String, required: true },
-        apiNote: { type: String, required: true },
+        apiCreator: { type: String, required: true },
+        apiNote: { type: String },
     },
     { timestamps: true },
 )
