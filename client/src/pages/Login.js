@@ -8,7 +8,7 @@ import { setToken } from '../util/auth';
 
 function Login() {
   const navigate = useNavigate();
-  
+
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
     setToken(values.user)
