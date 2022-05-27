@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import project_requests from '../../service/projectService'
 import { useNavigate } from 'react-router-dom'
+import { isLogined } from '../../util/auth';
 
 import { Card, Table, Button, Popconfirm, message } from 'antd'
 
 function ProjectList() {
+
   const navigate = useNavigate()
+  
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    project_requests.getProjects().then(res => { setProjects(res) })
+      project_requests.getProjects().then(res => { setProjects(res) })
   }, [])
 
   console.log('TCL: projectList -> projects', projects)

@@ -1,6 +1,7 @@
 import { Spin } from 'antd'
 import { lazy, Suspense } from 'react'
 import { Navigate } from 'react-router-dom'
+import FrontendAuth from '../util/FrontendAuth';
 
 import Frame from '../components/Frame'
 
@@ -29,10 +30,10 @@ const router = [
         children: [
             {
                 index: true,
-                element: lazyload(<ProjectList />)
+                element: lazyload(<FrontendAuth><ProjectList /></FrontendAuth>)
             },
-            { path: '/menu/project', element: lazyload(<ProjectCreat />) },
-            { path: '/menu/project/:projectId', element: lazyload(<ProjectEdit />) },
+            { path: '/menu/project',element: lazyload(<ProjectCreat />) },
+            { path: '/menu/project/:projectId',element: lazyload(<ProjectEdit />) },
             { path: '/menu/project/:projectId/apisList', element: lazyload(<ApiList />) },
             { path: '/menu/project/:projectId/api', element: lazyload(<ApiCreat />) },
             { path: '/menu/project/:projectId/api/:apiId', element: lazyload(<ApiEdit />) },
@@ -45,5 +46,7 @@ const router = [
     { path: '/404', element: lazyload(<PageNotFound />) },
     { path: '*', element: <Navigate to="/404" /> },
 ]
+
+
 
 export default router
