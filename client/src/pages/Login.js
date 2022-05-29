@@ -1,18 +1,30 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
-
+import user_requests from '../service/userService';
 import { Form, Input, Button, Checkbox, Card } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import '../style/Login.css'
 import { setToken } from '../util/auth';
 
+//import jwt_decode from 'jwt-decode'
+
 function Login() {
   const navigate = useNavigate();
-
+  
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
-    setToken(values.user)
-    navigate('/')
+    //setToken(values.user)
+    user_requests.login(values).then(res=>{
+      if(res.msg === 'fail'){
+        alert(res.data)
+      } else {
+        alert(res.data)
+        const token = res.token.token
+        setToken(token)
+        navigate('/')
+      }
+    })
+    
   };
 
   return (
@@ -26,7 +38,7 @@ function Login() {
         onFinish={onFinish}
       >
         <Form.Item
-          name="user"
+          name="username"
           rules={[
             {
               required: true,
@@ -62,7 +74,10 @@ function Login() {
           <Button type="primary" htmlType="submit" className="login-form-button">
             登录
           </Button>
-          Or <a href="/register">马上注册!</a>
+          <Button></Button> 
+          <Button href="/register" type="primary" htmlType="submit" className="login-form-button" >
+            马上注册!
+            </Button>
         </Form.Item>
       </Form>
     </Card>
