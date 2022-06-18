@@ -51,7 +51,7 @@ const login = async (ctx) => {
           )
            ctx.body = {
                msg: 'success',
-               username:'',
+               username: username,
                data: '登录成功',
                token:{token}
            }
@@ -116,6 +116,22 @@ const deleteUser = async (ctx) => {
     ctx.body = await User.find({})
 }
 
+const updatePassword = async (ctx) => {
+        
+    const { 
+        password,
+        username,
+    } = ctx.request.body
+   
+  const users = await User.find({UserName: username})
+  const user = users[0]
+
+  user.Password = encrypt(password)
+  const updateUser = await user.save()
+
+    ctx.body = updateUser
+}
+
 module.exports = {
     getUsers,
     login,
@@ -123,4 +139,5 @@ module.exports = {
     createUser,
     updateUser,
     deleteUser,
+    updatePassword
 }

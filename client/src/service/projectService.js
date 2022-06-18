@@ -4,6 +4,14 @@ function getProjects() {
     return axios_get(`/projects`, '')
 }
 
+function getProjectByProjectName(params) {
+    return axios_post(`/projectname`, params)
+}
+
+function getProjectByUserName(username) {
+    return axios_get(`/project/${username}`, '')
+}
+
 function getProjectById(projectId) {
     return axios_get(`/project/${projectId}`, '')
 }
@@ -26,6 +34,8 @@ const project_requests = {
     createProject,
     updateProject,
     deleteProject,
+    getProjectByUserName,
+    getProjectByProjectName
 }
 
 export default project_requests

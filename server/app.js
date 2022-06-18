@@ -56,7 +56,7 @@ app.use((ctx, next) => {
 app.use(koajwt({
   secret: SECRET_CONFIG
 }).unless({ // 配置白名单
-  path: [/register/, /login/]
+  path: [/register/, /login/, /projectname/]
 }))
 
 /*

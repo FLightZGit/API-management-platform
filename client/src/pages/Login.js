@@ -19,8 +19,10 @@ function Login() {
         alert(res.data)
       } else {
         alert(res.data)
+        const username = res.username
         const token = res.token.token
         setToken(token)
+        localStorage.setItem('username',username)
         navigate('/')
       }
     })
