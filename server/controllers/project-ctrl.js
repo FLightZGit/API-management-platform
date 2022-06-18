@@ -13,6 +13,20 @@ const getProjectById = async (ctx) => {
     ctx.body = project
 }
 
+const getProjectByProjectName = async (ctx) => {
+    const projectname = ctx.request.body.projectname
+    const projects = await Project.find({projectName : projectname})
+    ctx.body = {
+        projects
+    }
+}
+
+const getProjectByUserName = async (ctx) => {
+    const username = ctx.params.username
+    const projects = await Project.find({projectCreator : username})
+    ctx.body = projects
+}
+
 const createProject = async (ctx) => {
     const newProject = new Project(ctx.request.body)
     const savedProject = await newProject.save()
@@ -49,4 +63,6 @@ module.exports = {
     createProject,
     updateProject,
     deleteProject,
+    getProjectByUserName,
+    getProjectByProjectName
 }

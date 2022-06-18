@@ -1,16 +1,17 @@
 import React from 'react'
 import { Button, Card, Form, Input } from 'antd'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import project_requests from '../../service/projectService';
 
 function ProjectCreat() {
   const navigate = useNavigate();
-
+  const [params] = useSearchParams()  
+  const username = params.get('username')
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
     project_requests.createProject(values)
-    navigate('/')
+    navigate('/?username='+username)
   };
 
   return (

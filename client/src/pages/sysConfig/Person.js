@@ -22,7 +22,7 @@ function Person() {
       <Meta
         avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
         title="Ana"
-        description="系统管理员"
+        description="账号信息"
       />
     </Card>
   )

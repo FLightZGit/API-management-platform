@@ -24,6 +24,10 @@ function deleteUser(userId) {
     return axios_delete(`/user/${userId}`, '')
 }
 
+function updatePassword(params){
+    return axios_post(`/updatePassword`,params)
+}
+
 const user_requests = {
     getUsers,
     login,
@@ -31,6 +35,7 @@ const user_requests = {
     createUser,
     updateUser,
     deleteUser,
+    updatePassword
 }
 
 export default user_requests

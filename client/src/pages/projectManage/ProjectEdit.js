@@ -1,17 +1,29 @@
 import React from 'react'
 import { Button, Card, Form, Input } from 'antd'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 
 import project_requests from '../../service/projectService'
 
 function ProjectEdit() {
   const navigate = useNavigate()
   const { projectId } = useParams()
+  const [params] = useSearchParams()  
+  const username = params.get('username')
 
+
+    project_requests.getProjectById(projectId).then(res => {
+      console.log('????')
+      console.log(res)
+    })
+
+    
   const onFinish = (values) => {
     console.log('Received values of form: ', values)
     project_requests.updateProject(projectId, values)
-    navigate('/')
+    console.log(username)
+    //console.log('????')
+    //console.log(project)
+    navigate('/?username='+username)
   }
 
   return (
@@ -28,7 +40,7 @@ function ProjectEdit() {
           rules={[
             {
               required: true,
-              message: '请输入项目名称!',
+              message: 'project.projectName',
             },
           ]}
         >
@@ -40,7 +52,7 @@ function ProjectEdit() {
           rules={[
             {
               required: true,
-              message: '请输入项目创建者!',
+              message: "project.projectCreator",
             },
           ]}
         ><Input />
@@ -51,7 +63,7 @@ function ProjectEdit() {
           rules={[
             {
               required: true,
-              message: '请输入项目备注!',
+              message: "project.projectNote",
             },
           ]}
         ><Input />

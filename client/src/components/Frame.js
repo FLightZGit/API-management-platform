@@ -26,12 +26,12 @@ function Frame() {
           >
             <SubMenu key="sub1" icon={<AlignLeftOutlined />} title='项目管理'>
               <Menu.Item key="1">
-                <Link to='/'>项目列表</Link>
+                <Link to={'/'}>项目列表</Link>
               </Menu.Item>
             </SubMenu>
-            <SubMenu key="sub2" icon={<ControlOutlined />} title='系统设置'>
+            <SubMenu key="sub2" icon={<ControlOutlined />} title='个人空间'>
               <Menu.Item key="2">
-                <Link to='/menu/sysConfig/person'>管理员</Link>
+                <Link to='/menu/sysConfig/person'>账号信息</Link>
               </Menu.Item>
             </SubMenu>
           </Menu>
