@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import user_requests from '../service/userService';
 import { Form, Input, Button, Card } from 'antd';
 import { UserOutlined, LockOutlined, MailOutlined} from '@ant-design/icons';
-import '../style/Login.css'
+import '../style/Register.css'
 
 function Register() {
   const navigate = useNavigate();
@@ -23,10 +23,10 @@ function Register() {
   };
 
   return (
-    <Card title='API管理平台注册' className='login-card'>
+    <Card title='API管理平台注册' className='register-card'>
       <Form
-        name="normal_login"
-        className="login-form"
+        name="normal_register"
+        className="register-form"
         initialValues={{
           remember: true,
         }}
