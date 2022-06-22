@@ -99,7 +99,7 @@ function ApiEdit() {
               message: '请输入Api创建者!',
             },
           ]}
-        ><Input />
+        ><Input placeholder = {localStorage.getItem('username')}/>
         </Form.Item>
         <Form.Item
           label='Api备注'

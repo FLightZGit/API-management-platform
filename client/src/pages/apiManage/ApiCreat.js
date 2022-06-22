@@ -1,12 +1,36 @@
-import React from 'react'
-import { Button, Card, Form, Input } from 'antd'
+import React , { useState }from 'react'
+import { Button, Card, Form, Input, Select, Divider, Space, Typography } from 'antd'
+import { PlusOutlined } from '@ant-design/icons';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import api_requests from '../../service/apiService';
-
+const { Option } = Select;
+let index =0 ;
 function ApiCreat() {
   const navigate = useNavigate();
-  const { projectId } = useParams()
+  const { projectId } = useParams();
+  let groupArray = JSON.parse(localStorage.getItem('Group'))
+  const [items, setItems] = useState([...groupArray]);
+  const [name, setName] = useState('');
+
+  const onNameChange = (event) => {
+    setName(event.target.value);
+  };
+
+  const addItem = (e) => {
+    e.preventDefault();
+    setItems([...items, name || `分组 ${index++}`]);
+    console.log(name)
+    groupArray = JSON.parse(localStorage.getItem('Group'))
+    groupArray.push(name);
+    console.log(groupArray);
+    localStorage.setItem("Group", JSON.stringify(groupArray));
+    if(name){
+    }else {
+
+    }
+    setName('');
+  };
 
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
@@ -87,7 +111,43 @@ function ApiCreat() {
               message: '请输入Api分组!',
             },
           ]}
-        ><Input />
+        >
+          <Select
+      style={{
+        width: 300,
+      }}
+      placeholder="新建分组"
+      dropdownRender={(menu) => (
+        <>
+          {menu}
+          <Divider
+            style={{
+              margin: '8px 0',
+            }}
+          />
+          <Space
+            align="center"
+            style={{
+              padding: '0 8px 4px',
+            }}
+          >
+            <Input placeholder="Please enter item" value={name} onChange={onNameChange} />
+            <Typography.Link
+              onClick={addItem}
+              style={{
+                whiteSpace: 'nowrap',
+              }}
+            >
+              <PlusOutlined /> 新建分组
+            </Typography.Link>
+          </Space>
+        </>
+      )}
+    >
+      {items.map((item) => (
+        <Option key={item}>{item}</Option>
+      ))}
+    </Select>
         </Form.Item>
         <Form.Item
           label='Api创建者'
@@ -98,7 +158,7 @@ function ApiCreat() {
               message: '请输入Api创建者!',
             },
           ]}
-        ><Input />
+        ><Input placeholder = {localStorage.getItem('username')}/>
         </Form.Item>
         <Form.Item
           label='Api备注'

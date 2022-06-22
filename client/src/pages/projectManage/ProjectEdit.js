@@ -12,7 +12,6 @@ function ProjectEdit() {
 
 
     project_requests.getProjectById(projectId).then(res => {
-      console.log('????')
       console.log(res)
     })
 
@@ -55,7 +54,7 @@ function ProjectEdit() {
               message: "project.projectCreator",
             },
           ]}
-        ><Input />
+        ><Input placeholder = {localStorage.getItem('username')}/>
         </Form.Item>
         <Form.Item
           label='项目备注'

@@ -42,8 +42,9 @@ function ProjectCreat() {
             required: true,
             message: '请输入项目创建者!',
           },
+          
         ]}
-        ><Input />
+        ><Input placeholder = {localStorage.getItem('username')}/>
         </Form.Item>
         <Form.Item
           label='项目备注'

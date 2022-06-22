@@ -8,7 +8,7 @@ const ApiSchema = new Schema(
         apiRequestMethod: { type: String, required: true },
         apiParameters: { type: [String], required: true },
         apiReturn: { type: String, required: true },
-        apiGroup: { type: Number, required: true },
+        apiGroup: { type: String, required: true },
         apiCreator: { type: String, required: true },
         apiNote: { type: String },
     },
