@@ -11,7 +11,7 @@ function ApiList() {
   const { projectId } = useParams()
 
   const [apis, setApis] = useState([]);
-  let groupArray = JSON.parse(localStorage.getItem("Group"));
+  //let groupArray = JSON.parse(localStorage.getItem("Group"));
 
   useEffect(() => {
     api_requests.getApis(projectId).then(res => { setApis(res); count = res.length})

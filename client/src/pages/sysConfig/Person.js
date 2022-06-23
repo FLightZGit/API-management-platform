@@ -21,7 +21,7 @@ function Person() {
     >
       <Meta
         avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-        title="Ana"
+        title={localStorage.getItem("username")}
         description="账号信息"
       />
     </Card>

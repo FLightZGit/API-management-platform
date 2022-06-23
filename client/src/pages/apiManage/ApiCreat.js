@@ -5,7 +5,16 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import api_requests from '../../service/apiService';
 const { Option } = Select;
-let index =0 ;
+if(localStorage.getItem("Group") == null) {
+  let groupArray = ["分组一", "分组二", "分组三", "分组四"]
+  localStorage.setItem("Group", JSON.stringify(groupArray))
+}
+
+if(localStorage.getItem("index") == null){
+  let index =0 ;
+  localStorage.setItem("index", index);
+}
+  
 function ApiCreat() {
   const navigate = useNavigate();
   const { projectId } = useParams();
@@ -19,16 +28,19 @@ function ApiCreat() {
 
   const addItem = (e) => {
     e.preventDefault();
-    setItems([...items, name || `分组 ${index++}`]);
-    console.log(name)
+    let index = localStorage.getItem("index");
+    setItems([...items, name || `分组 ${index}`]);
     groupArray = JSON.parse(localStorage.getItem('Group'))
-    groupArray.push(name);
-    console.log(groupArray);
-    localStorage.setItem("Group", JSON.stringify(groupArray));
-    if(name){
-    }else {
-
+    if(name) {
+      //console.log(name)
+      groupArray.push(name);
+      //console.log(groupArray);
+    } else {
+      groupArray.push(`分组 ${index++}`)
     }
+    
+    localStorage.setItem("Group", JSON.stringify(groupArray));
+    localStorage.setItem("index", index)
     setName('');
   };
 
