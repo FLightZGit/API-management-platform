@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 const User = require('../models/user-model')
-const {encrypt} = require('../unit')
+const {encrypt} = require('../unil')
 const{ SECRET_CONFIG } = require('../config')
 
 const getUsers = async (ctx) => {
