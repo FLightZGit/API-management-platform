@@ -7,6 +7,10 @@ import { useNavigate } from 'react-router-dom';
 function PersonEdit() {
   const navigate = useNavigate();
   const onFinish = (values) => {
+    if(values.newPassword !== values.newPasswordConfirm){
+      alert("两次密码不一样")
+      window.location.reload()
+    }else{
     console.log('Received values of form: ', values)
     const data = {
       username:localStorage.getItem('username'),
@@ -16,6 +20,7 @@ function PersonEdit() {
     user_requests.updatePassword(data)
     
     navigate('/login')
+  }
   }
   return (
     <Card title='修改密码'>
